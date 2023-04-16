@@ -3,6 +3,8 @@ name: Docker container publish
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   CI:
