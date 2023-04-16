@@ -3,6 +3,7 @@ extend-ignore = E203
 exclude =
     .git,
     __pycache__,
+    migrations,
     old,
     build,
     dist
