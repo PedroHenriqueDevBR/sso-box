@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = ""
+SECRET_KEY = "test"
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     # 3° Party
     # Apps
     "apps.core",
+    "apps.authorization",
 ]
 
 MIDDLEWARE = [
