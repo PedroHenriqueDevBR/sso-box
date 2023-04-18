@@ -4,6 +4,7 @@ exclude =
     .git,
     __pycache__,
     migrations,
+    settings,
     old,
     build,
     dist
