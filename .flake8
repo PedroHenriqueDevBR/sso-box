@@ -1,5 +1,5 @@
 [flake8]
-extend-ignore = E203
+# extend-ignore = E302,E305,F401
 exclude =
     .git,
     __pycache__,
@@ -11,3 +11,4 @@ exclude =
     venv
 
 max-complexity = 10
+max-line-length = 120

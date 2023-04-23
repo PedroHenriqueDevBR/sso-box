@@ -1,5 +1,5 @@
 {
-    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.typeCheckingMode": "strict",
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true,
@@ -8,6 +8,9 @@
     "python.formatting.provider": "black",
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--config=.flake8",
+    ],
     "python.linting.pylintEnabled": false,
     "python.poetryPath": "venv/bin/python",
     "python.testing.pytestArgs": [
