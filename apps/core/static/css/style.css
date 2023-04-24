@@ -1,0 +1,29 @@
+.app-bg-color {
+    background-color: #E2EAFC;
+}
+
+.app-primary-color {
+    background-color: #22577A;
+}
+
+.app-primary-color-text {
+    color: #22577A;
+}
+
+.app-secondary-color {
+    background-color: #38A3A5;
+}
+
+.app-secondary-color-text {
+    color: #38A3A5;
+}
+
+/* =============================== */
+
+.full-width {
+    min-width: 100%;
+}
+
+.full-height {
+    min-height: 100vh;
+}
