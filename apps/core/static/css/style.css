@@ -1,21 +1,25 @@
 .app-bg-color {
-    background-color: #E2EAFC;
+    background-color: #E2EAFC !important;
 }
 
 .app-primary-color {
-    background-color: #22577A;
+    background-color: #22577A !important;
+}
+
+.app-on-primary-color {
+    color: #fff !important;
 }
 
 .app-primary-color-text {
-    color: #22577A;
+    color: #22577A !important;
 }
 
 .app-secondary-color {
-    background-color: #38A3A5;
+    background-color: #38A3A5 !important;
 }
 
 .app-secondary-color-text {
-    color: #38A3A5;
+    color: #38A3A5 !important;
 }
 
 /* =============================== */
