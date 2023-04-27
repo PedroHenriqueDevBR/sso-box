@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     # Apps
     "apps.core",
     "apps.authorization",
+    "apps.dashboard",
 ]
 
 MIDDLEWARE = [
