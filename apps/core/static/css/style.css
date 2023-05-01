@@ -31,3 +31,8 @@
 .full-height {
     min-height: 100vh;
 }
+
+.app-max-height {
+    max-height: 100vh;
+    overflow-y: auto;
+}
