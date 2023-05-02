@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+
+{% include 'dashboard/widgets/header.html' with selected='applications' %}
+
+<main>
+
+    <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-top" uk-grid>
+        <div class="uk-background-cover" style="background-image: url('{% static 'dashboard/images/application-default.jpg' %}');" uk-height-viewport></div>
+        <div class="uk-padding-large">
+            <div class="uk-flex uk-flex-between">
+                <h2 class="uk-margin-remove">Applications Name</h2>
+            </div>
+
+            <hr class="uk-divider-icon">
+
+            <span>Created at: 00/00/0000</span>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident impedit adipisci porro ab molestiae autem quod hic aliquam, obcaecati quia. Reprehenderit, explicabo culpa
+                doloribusiste esse maiores vel pariatur fugiat.</p>
+
+            <h4>Profiles</h4>
+
+            <div class="uk-flex uk-flex-wrap">
+                <div class="uk-margin-right"><span class="uk-badge">Directory</span></div>
+                <div class="uk-margin-right"><span class="uk-badge">Managers</span></div>
+                <div class="uk-margin-right"><span class="uk-badge">Employeers</span></div>
+            </div>
+
+            <h4>Options</h4>
+
+            <div class="uk-flex uk-margin-top">
+                <a href="#" class="uk-button uk-button-default">Open</a>
+                <a class="uk-button uk-button-default" href="#modal-users-application" uk-toggle>Users</a>
+                <a class="uk-button uk-button-primary" href="#modal-modify-application" uk-toggle>Edit</a>
+                <a class="uk-button uk-button-danger" href="#modal-confirm-application" uk-toggle>Disable</a>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+
+{% include 'dashboard/widgets/modal_modify_application.html' %}
+{% include 'dashboard/widgets/modal_users_application.html' %}
+{% include 'dashboard/widgets/modal_confirm_application.html' with message="Confirm disable application?" %}
+
+{% endblock body %}

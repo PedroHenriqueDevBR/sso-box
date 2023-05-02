@@ -1,0 +1,106 @@
+{% load static %}
+
+<div id="modal-modify-application" class="uk-modal-full" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+        <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+            <div class="uk-background-cover" style="background-image: url('{% static 'dashboard/images/application-default.jpg' %}');" uk-height-viewport></div>
+            <div class="uk-padding-large app-max-height">
+                <h1>Application</h1>
+                <p>(*) required</p>
+                <hr class="uk-divider-icon">
+                <form method="post">
+                    <fieldset class="uk-fieldset">
+                        <legend class="uk-legend">Application details</legend>
+
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" placeholder="Application name" aria-label="Input">
+                        </div>
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" placeholder="Short description" aria-label="Input">
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="uk-fieldset">
+                        <legend class="uk-legend">Application paths</legend>
+
+
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" placeholder="Initial URL" aria-label="Input">
+                        </div>
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" placeholder="Callback URL" aria-label="Input">
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="uk-fieldset uk-flex uk-flex-wrap">
+                        <legend class="uk-legend">Profiles and permissions</legend>
+
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Directory">
+                            <label class="uk-form-label" for="Directory">Directory</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Managers">
+                            <label class="uk-form-label" for="Managers">Managers</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Employeers">
+                            <label class="uk-form-label" for="Employeers">Employeers</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Directory">
+                            <label class="uk-form-label" for="Directory">Directory</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Managers">
+                            <label class="uk-form-label" for="Managers">Managers</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Employeers">
+                            <label class="uk-form-label" for="Employeers">Employeers</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Directory">
+                            <label class="uk-form-label" for="Directory">Directory</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Managers">
+                            <label class="uk-form-label" for="Managers">Managers</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Employeers">
+                            <label class="uk-form-label" for="Employeers">Employeers</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Directory">
+                            <label class="uk-form-label" for="Directory">Directory</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Managers">
+                            <label class="uk-form-label" for="Managers">Managers</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Employeers">
+                            <label class="uk-form-label" for="Employeers">Employeers</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Directory">
+                            <label class="uk-form-label" for="Directory">Directory</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Managers">
+                            <label class="uk-form-label" for="Managers">Managers</label>
+                        </div>
+                        <div class="uk-padding-small">
+                            <input class="uk-checkbox" type="checkbox" id="Employeers">
+                            <label class="uk-form-label" for="Employeers">Employeers</label>
+                        </div>
+                    </fieldset>
+                    <div class="uk-margin"></div>
+                    <button class="uk-button uk-button-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

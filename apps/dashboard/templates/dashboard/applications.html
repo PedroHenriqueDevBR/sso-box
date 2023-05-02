@@ -10,7 +10,7 @@
     <div class="uk-flex uk-flex-between">
         <h1>Manage Applications</h1>
         <div class="uk-flex uk-flex-column uk-flex-center">
-            <a class="uk-button uk-button-default" href="#modal-add-application" uk-toggle>Add</a>
+            <a class="uk-button uk-button-default" href="#modal-modify-application" uk-toggle>Add</a>
         </div>
     </div>
     <hr class="uk-divider-icon">
@@ -27,7 +27,7 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat impedit qui dolores fuga numquam sequi et beatae, aut, cumque, perferendis accusamus. Architecto sed in
                         distinctio iste. Minus vero impedit tempore!</p>
                     <div class="uk-flex">
-                        <button class="uk-button uk-button-primary">Details</button>
+                        <a href="{% url 'application_details' 1 %}" class="uk-button uk-button-primary">Details</a>
                     </div>
                 </div>
             </div>
@@ -35,109 +35,6 @@
     </section>
 </main>
 
-<div id="modal-add-application" class="uk-modal-full" uk-modal>
-    <div class="uk-modal-dialog">
-        <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
-        <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
-            <div class="uk-background-cover" style="background-image: url('{% static 'dashboard/images/application-default.jpg' %}');" uk-height-viewport></div>
-            <div class="uk-padding-large app-max-height">
-                <h1>New Application</h1>
-                <p>(*) required</p>
-                <hr class="uk-divider-icon">
-                <form method="post">
-                    <fieldset class="uk-fieldset">
-                        <legend class="uk-legend">Application details</legend>
-
-                        <div class="uk-margin">
-                            <input class="uk-input" type="text" placeholder="Application name" aria-label="Input">
-                        </div>
-                        <div class="uk-margin">
-                            <input class="uk-input" type="text" placeholder="Short description" aria-label="Input">
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="uk-fieldset">
-                        <legend class="uk-legend">Application paths</legend>
-
-
-                        <div class="uk-margin">
-                            <input class="uk-input" type="text" placeholder="Initial URL" aria-label="Input">
-                        </div>
-                        <div class="uk-margin">
-                            <input class="uk-input" type="text" placeholder="Callback URL" aria-label="Input">
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="uk-fieldset uk-flex uk-flex-wrap">
-                        <legend class="uk-legend">Profiles and permissions</legend>
-
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Directory">
-                            <label class="uk-form-label" for="Directory">Directory</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Managers">
-                            <label class="uk-form-label" for="Managers">Managers</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Employeers">
-                            <label class="uk-form-label" for="Employeers">Employeers</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Directory">
-                            <label class="uk-form-label" for="Directory">Directory</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Managers">
-                            <label class="uk-form-label" for="Managers">Managers</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Employeers">
-                            <label class="uk-form-label" for="Employeers">Employeers</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Directory">
-                            <label class="uk-form-label" for="Directory">Directory</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Managers">
-                            <label class="uk-form-label" for="Managers">Managers</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Employeers">
-                            <label class="uk-form-label" for="Employeers">Employeers</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Directory">
-                            <label class="uk-form-label" for="Directory">Directory</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Managers">
-                            <label class="uk-form-label" for="Managers">Managers</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Employeers">
-                            <label class="uk-form-label" for="Employeers">Employeers</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Directory">
-                            <label class="uk-form-label" for="Directory">Directory</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Managers">
-                            <label class="uk-form-label" for="Managers">Managers</label>
-                        </div>
-                        <div class="uk-padding-small">
-                            <input class="uk-checkbox" type="checkbox" id="Employeers">
-                            <label class="uk-form-label" for="Employeers">Employeers</label>
-                        </div>
-                    </fieldset>
-                    <div class="uk-margin"></div>
-                    <button class="uk-button uk-button-primary">Save</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+{% include 'dashboard/widgets/modal_modify_application.html' %}
 
 {% endblock body %}

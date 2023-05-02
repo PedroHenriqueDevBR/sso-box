@@ -12,4 +12,9 @@ urlpatterns = [
         application_views.ApplicationListView.as_view(),
         name="applications",
     ),
+    path(
+        "applications/<int:pk>",
+        application_views.ApplicationDetailsView.as_view(),
+        name="application_details",
+    ),
 ]
