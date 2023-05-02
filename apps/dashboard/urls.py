@@ -3,6 +3,7 @@ from apps.dashboard.views import (
     dashboard_views,
     application_views,
     profile_views,
+    users_views,
 )
 
 urlpatterns = [
@@ -25,5 +26,10 @@ urlpatterns = [
         "profile",
         profile_views.ProfileView.as_view(),
         name="profile",
+    ),
+    path(
+        "users",
+        users_views.UsersView.as_view(),
+        name="users",
     ),
 ]

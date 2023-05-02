@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+
+{% include 'dashboard/widgets/header.html' with selected='users' %}
+
+<main class="uk-container uk-padding">
+    <div class="uk-flex uk-flex-between">
+        <h1>Registered Users</h1>
+        <div class="uk-flex uk-flex-column uk-flex-center">
+            <a class="uk-button uk-button-default" href="#modal-modify-application" uk-toggle>Add</a>
+        </div>
+    </div>
+    <hr class="uk-divider-icon">
+
+    <section>
+        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
+            <div class="uk-flex uk-flex-center uk-flex-middle">
+                <img src="{% static 'dashboard/images/application-default.jpg' %}" width="300" height="300" class="avatar">
+            </div>
+            <div class="uk-width-expand">
+                <div class="uk-card-body">
+                    <h3 class="uk-card-title">Full User Name</h3>
+                    <span>Created at: 00/00/0000</span><br>
+                    <span>Last login: 00/00/0000</span>
+                    <hr>
+                    <div class="uk-flex">
+                        <a href="{% url 'application_details' 1 %}" class="uk-button uk-button-default">Details</a>
+                        <a href="{% url 'application_details' 1 %}" class="uk-button uk-button-default">Edit</a>
+                        <a href="{% url 'application_details' 1 %}" class="uk-button uk-button-default">Disable</a>
+                        <a href="{% url 'application_details' 1 %}" class="uk-button uk-button-default">Logs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include 'dashboard/widgets/modal_modify_application.html' %}
+
+{% endblock body %}

@@ -28,6 +28,10 @@
     color: var(--app-secondary-color) !important;
 }
 
+.avatar {
+    clip-path: circle();
+}
+
 /* =============================== */
 
 .full-width {
