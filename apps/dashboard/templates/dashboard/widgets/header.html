@@ -15,7 +15,7 @@
                     <a href="#" class="app-on-primary-color {% if selected == 'users' %}app-secondary-color-text{% endif %}">Users</a>
                 </li>
                 <li>
-                    <a href="#" class="app-on-primary-color {% if selected == 'profile' %}app-secondary-color-text{% endif %}">Profile</a>
+                    <a href="{% url 'profile' %}" class="app-on-primary-color {% if selected == 'profile' %}app-secondary-color-text{% endif %}">Profile</a>
                 </li>
                 <li>
                     <a href="#" class="app-on-primary-color">Exit</a>

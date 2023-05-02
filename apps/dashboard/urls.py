@@ -1,5 +1,9 @@
 from django.urls import path
-from apps.dashboard.views import dashboard_views, application_views
+from apps.dashboard.views import (
+    dashboard_views,
+    application_views,
+    profile_views,
+)
 
 urlpatterns = [
     path(
@@ -16,5 +20,10 @@ urlpatterns = [
         "applications/<int:pk>",
         application_views.ApplicationDetailsView.as_view(),
         name="application_details",
+    ),
+    path(
+        "profile",
+        profile_views.ProfileView.as_view(),
+        name="profile",
     ),
 ]
