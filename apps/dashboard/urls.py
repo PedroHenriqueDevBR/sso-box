@@ -32,4 +32,9 @@ urlpatterns = [
         users_views.UsersView.as_view(),
         name="users",
     ),
+    path(
+        "users/<int:pk>",
+        users_views.UsersDetailsView.as_view(),
+        name="user_details",
+    ),
 ]

@@ -10,7 +10,7 @@
     <div class="uk-flex uk-flex-between">
         <h1>Registered Users</h1>
         <div class="uk-flex uk-flex-column uk-flex-center">
-            <a class="uk-button uk-button-default" href="#modal-modify-application" uk-toggle>Add</a>
+            <a class="uk-button uk-button-default" href="#modal-modify-user" uk-toggle>Add</a>
         </div>
     </div>
     <hr class="uk-divider-icon">
@@ -27,10 +27,10 @@
                     <span>Last login: 00/00/0000</span>
                     <hr>
                     <div class="uk-flex">
-                        <a href="{% url 'application_details' 1 %}" class="uk-button uk-button-default">Details</a>
-                        <a href="{% url 'application_details' 1 %}" class="uk-button uk-button-default">Edit</a>
-                        <a href="{% url 'application_details' 1 %}" class="uk-button uk-button-default">Disable</a>
-                        <a href="{% url 'application_details' 1 %}" class="uk-button uk-button-default">Logs</a>
+                        <a href="{% url 'user_details' 1 %}" class="uk-button uk-button-default">Details</a>
+                        <a href="{% url 'user_details' 1 %}" class="uk-button uk-button-default">Edit</a>
+                        <a href="{% url 'user_details' 1 %}" class="uk-button uk-button-default">Disable</a>
+                        <a href="{% url 'user_details' 1 %}" class="uk-button uk-button-default">Logs</a>
                     </div>
                 </div>
             </div>
@@ -38,6 +38,6 @@
     </section>
 </main>
 
-{% include 'dashboard/widgets/modal_modify_application.html' %}
+{% include 'dashboard/widgets/modal_modify_user.html' %}
 
 {% endblock body %}
