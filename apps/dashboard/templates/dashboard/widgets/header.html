@@ -1,0 +1,26 @@
+<div class="app-bg-color uk-padding-small">
+    <h3 class="uk-text-lead uk-text-bolder uk-text-uppercase uk-text-center uk-margin-remove">Authenticator System</h3>
+</div>
+<header uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky;">
+    <nav class="uk-navbar-container app-primary-color">
+        <div uk-navbar class="uk-flex uk-flex-center">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="{% url 'home' %}" class="app-on-primary-color {% if selected == 'home' %}app-secondary-color-text{% endif %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'applications' %}" class="app-on-primary-color {% if selected == 'applications' %}app-secondary-color-text{% endif %}">Applications</a>
+                </li>
+                <li>
+                    <a href="{% url 'users' %}" class="app-on-primary-color {% if selected == 'users' %}app-secondary-color-text{% endif %}">Users</a>
+                </li>
+                <li>
+                    <a href="{% url 'profile' %}" class="app-on-primary-color {% if selected == 'profile' %}app-secondary-color-text{% endif %}">Profile</a>
+                </li>
+                <li>
+                    <a href="#" class="app-on-primary-color">Exit</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
