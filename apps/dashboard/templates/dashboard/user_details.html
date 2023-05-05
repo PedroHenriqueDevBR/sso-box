@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+
+{% include 'dashboard/widgets/header.html' with selected='users' %}
+
+<main class="uk-container uk-padding">
+    <div class="uk-flex uk-flex-between">
+        <h1>Users Details</h1>
+        <div class="uk-flex uk-flex-middle">
+            <div class="uk-flex">
+                <a class="uk-button uk-button-default" href="#modal-modify-user" uk-toggle>Edit</a>
+                <a class="uk-button uk-button-default" href="#modal-confirm-application" uk-toggle>Disable</a>
+                <a href="#" class="uk-button uk-button-default">Logs</a>
+            </div>
+        </div>
+    </div>
+    <hr class="uk-divider-icon">
+
+    <section>
+        <div class="uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
+            <div class="uk-flex uk-flex-center uk-flex-middle">
+                <img src="{% static 'dashboard/images/application-default.jpg' %}" width="300" height="300" class="avatar">
+            </div>
+            <div class="uk-width-expand">
+                <div class="uk-card-body">
+                    <h3 class="uk-text-lead">Full User Name</h3>
+                    <div class="uk-flex uk-flex-between">
+                        <div>
+                            <span><b>Phone number:</b> (86) 91234-5678</span>
+                            <b>|</b>
+                            <span><b>E-mail:</b> generic@mail.com</span>
+                        </div>
+                        <span>CPF: 000.000.000-00</span>
+                    </div>
+                    <span class="uk-text-meta">Created at: 00/00/0000</span><br>
+                    <span class="uk-text-meta">Last login: 00/00/0000</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include 'dashboard/widgets/modal_modify_user.html' %}
+{% include 'dashboard/widgets/modal_confirm_application.html' with message="Confirm disable user?" %}
+
+{% endblock body %}

@@ -1,21 +1,35 @@
+:root {
+    --app-background-color: #ebf2fa;
+    --app-primary-color: #14213d;
+    --app-secondary-color: #fca311;
+}
+
 .app-bg-color {
-    background-color: #E2EAFC;
+    background-color: var(--app-background-color) !important;
 }
 
 .app-primary-color {
-    background-color: #22577A;
+    background-color: var(--app-primary-color) !important;
+}
+
+.app-on-primary-color {
+    color: #fff !important;
 }
 
 .app-primary-color-text {
-    color: #22577A;
+    color: var(--app-primary-color) !important;
 }
 
 .app-secondary-color {
-    background-color: #38A3A5;
+    background-color: var(--app-secondary-color) !important;
 }
 
 .app-secondary-color-text {
-    color: #38A3A5;
+    color: var(--app-secondary-color) !important;
+}
+
+.avatar {
+    clip-path: circle();
 }
 
 /* =============================== */
@@ -26,4 +40,13 @@
 
 .full-height {
     min-height: 100vh;
+}
+
+.max-full-height {
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.app-max-height {
+    height: calc(100vh - 146px);
 }
