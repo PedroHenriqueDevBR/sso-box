@@ -1,6 +1,62 @@
 {% extends 'core/base.html' %}
+{% load static %}
+
 {% block title %}Login{% endblock title %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'authorization/css/style.css' %}">
+{% endblock styles %}
+
 {% block body %}
-<h1>Working!</h1>
+<div id="login" class="app-primary-color full-height">
+    <div class="uk-child-width-1-2 full-height" uk-grid>
+        <aside id="aside-login" class="uk-width-3-5 app-secondary-color-text"
+            style="background: url({% static 'authorization/images/auth_backgroung.jpg' %});">
+            <h1 class="uk-text-bold uk-text-uppercase">Login</h1>
+            <p class="uk-text-meta">Select a login method</p>
+        </aside>
+        <section id="form-login" class="uk-width-2-5 app-bg-color">
+            <div class="full-width uk-background-default">
+                <ul class="uk-child-width-expand uk-margin-remove" uk-tab>
+                    <li class="uk-active uk-padding-remove"><a href="#" class="uk-background-default">Default</a></li>
+                    <li>
+                        <a href="#" class="uk-background-default">AD <span uk-icon="icon: triangle-down"></span></a>
+                        <div uk-dropdown="mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li class="uk-nav-header">Where i am?</li>
+                                <li><a href="#">Unity 01</a></li>
+                                <li><a href="#">Unity 02</a></li>
+                                <li><a href="#">Unity 03</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#" class="uk-background-default">SAMBA</a></li>
+                </ul>
+            </div>
+
+            <!-- Formulário -->
+            <div id="container-form">
+                <form method="post" class="uk-card uk-card-default">
+                    <div class="uk-card-header">
+                        <h3 class="uk-card-title">Default login</h3>
+                    </div>
+                    <div class="uk-card-body">
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" placeholder="Input" aria-label="Input">
+                        </div>
+                        <div class="uk-margin">
+                            <input class="uk-input" type="password" placeholder="Password" aria-label="Input">
+                        </div>
+                    </div>
+                    <div class="uk-card-footer uk-padding-remove">
+                        <button class="uk-button uk-button-default uk-width-1-1">Entrar</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+    </div>
+</div>
 {% endblock body %}
