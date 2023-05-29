@@ -1,27 +1,29 @@
 import ldap
 
-# Install to work
-# sudo apt-get install python3-dev libxml2-dev libxslt1-dev zlib1g-dev libsasl2-dev libldap2-dev build-essential libssl-dev libffi-dev libmysqlclient-dev libjpeg-dev libpq-dev libjpeg8-dev liblcms2-dev libblas-dev libatlas-base-dev
 
+class ADConnection:
+    def __init__(self, address: str):
+        self.address = address
 
-def authenticate(address, username, password):
-    try:
-        ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
-        connection = ldap.initialize(address)
-        connection.protocol_version = ldap.VERSION3
-        connection.simple_bind_s(username, password)
-        return True
-    except ldap.INVALID_CREDENTIALS:
-        return False
-    except ldap.LDAPError as error:
-        print("Error:", error)
-        return False
-    finally:
-        connection.unbind_s()
-
-
-if __name__ == "__main__":
-    username = input("Username: ")
-    password = input("Password: ")
-    address = "ldap://192.168.0.18"
-    print(authenticate(address=address, username=username, password=password))
+    def authenticate(self, username: str, password: str):
+        try:
+            ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
+            connection = ldap.initialize(self.address)
+            connection.protocol_version = ldap.VERSION3
+            connection.simple_bind_s(username, password)
+            print("Authenticated")
+            return True
+        except ldap.INVALID_CREDENTIALS:
+            print("Invalid credentials")
+            return True
+        except ldap.SERVER_DOWN:
+            print("LDAP error: Server down")
+        except ldap.LDAPError as e:
+            if type(e.message) == dict and e.message.has_key("desc"):
+                print("LDAP error: " + e.message["desc"])
+            else:
+                print("LDAP error: " + e)
+            return False
+        finally:
+            print("LDAP closed connection")
+            connection.unbind_s()
