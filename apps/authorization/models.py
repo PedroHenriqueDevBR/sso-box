@@ -1,6 +1,7 @@
 from django.db import models
 from apps.core.models import Application, Profile
 
+
 class Provider(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField(max_length=500)
@@ -37,7 +38,7 @@ class Connection(models.Model):
 class ADConnection(models.Model):
     details = models.ForeignKey(
         Provider,
-        related_name='ad_connections',
+        related_name="ad_connections",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,

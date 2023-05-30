@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+    <div class="uk-background-cover" style="background-image: url('{% static 'dashboard/images/application-default.jpg' %}');" uk-height-viewport></div>
+    <div class="uk-padding-large max-full-height">
+        <h1>AD Provider</h1>
+        <p>(*) required</p>
+        <hr class="uk-divider-icon">
+        <form method="post">
+            <fieldset class="uk-fieldset">
+                <legend class="uk-legend">Description</legend>
+
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Provider name" aria-label="Input">
+                </div>
+                <div class="uk-margin">
+                    <textarea class="uk-textarea" placeholder="Details"></textarea>
+                </div>
+
+                <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                    <label><input class="uk-checkbox" type="checkbox" checked> Is enabled</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="uk-fieldset">
+                <legend class="uk-legend">Connection</legend>
+
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="AD Address" aria-label="Input">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Bind DN" aria-label="Input">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="password" placeholder="Bind Password" aria-label="Input">
+                </div>
+            </fieldset>
+
+            <div class="uk-margin"></div>
+            <button class="uk-button uk-button-primary">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

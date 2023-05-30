@@ -7,4 +7,3 @@ class ADConnectionForm(forms.ModelForm):
     class Meta:
         model = ADConnection
         fields = '__all__'
-    
