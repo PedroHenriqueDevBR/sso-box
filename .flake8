@@ -1,5 +1,5 @@
 [flake8]
-# extend-ignore = E302,E305,F401
+extend-ignore = E203
 exclude =
     .git,
     __pycache__,
@@ -7,8 +7,10 @@ exclude =
     settings,
     old,
     build,
-    dist
-    venv
+    dist,
+    venv,
+    ./apps/core/static/,
+    ./apps/*/scripts/,
 
 max-complexity = 10
 max-line-length = 120
