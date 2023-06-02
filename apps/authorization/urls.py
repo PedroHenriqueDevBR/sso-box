@@ -8,6 +8,11 @@ urlpatterns = [
         name="default_login",
     ),
     path(
+        "login/ad",
+        auth_views.ActiveDirectorLogin.as_view(),
+        name="ad_login",
+    ),
+    path(
         "providers",
         provider_views.ProviderList.as_view(),
         name="providers",

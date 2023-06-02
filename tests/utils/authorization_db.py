@@ -1,7 +1,7 @@
 from apps.authorization.models import Provider, ADConnection
 
 
-def provider_fake():
+def provider_fake() -> Provider:
     return Provider.objects.create(
         name="",
         description="",
@@ -9,7 +9,7 @@ def provider_fake():
     )
 
 
-def ad_connection_fake(provider=None):
+def ad_connection_fake(provider=None) -> ADConnection:
     return ADConnection.objects.create(
         details=provider,
         address="128.0.0.1:123",

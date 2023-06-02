@@ -5,9 +5,11 @@ from django.views.generic import View
 
 class DefaultLogin(View):
     def get(self, request: HttpRequest):
-        return render(request=request, template_name="auth/login.html")
+        template_name = "auth/login.html"
+        return render(request, template_name)
 
 
 class ActiveDirectorLogin(View):
     def get(self, request: HttpRequest):
-        return render(request=request, template_name="auth/login.html")
+        template_name = "auth/login.html"
+        return render(request, template_name)
