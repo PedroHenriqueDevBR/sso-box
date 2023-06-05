@@ -9,18 +9,19 @@
         <p>(*) required</p>
         <hr class="uk-divider-icon">
         <form method="post">
+            {% csrf_token %}
             <fieldset class="uk-fieldset">
                 <legend class="uk-legend">Description</legend>
 
                 <div class="uk-margin">
-                    <input class="uk-input" type="text" placeholder="Provider name" aria-label="Input">
+                    <input name="name" class="uk-input" type="text" placeholder="Provider name" aria-label="Input">
                 </div>
                 <div class="uk-margin">
-                    <textarea class="uk-textarea" placeholder="Details"></textarea>
+                    <textarea name="description" class="uk-textarea" placeholder="Details"></textarea>
                 </div>
 
                 <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                    <label><input class="uk-checkbox" type="checkbox" checked> Is enabled</label>
+                    <label><input name="is_active" class="uk-checkbox" type="checkbox" checked> Is enabled</label>
                 </div>
             </fieldset>
 
@@ -28,18 +29,18 @@
                 <legend class="uk-legend">Connection</legend>
 
                 <div class="uk-margin">
-                    <input class="uk-input" type="text" placeholder="AD Address" aria-label="Input">
+                    <input name="address" class="uk-input" type="text" placeholder="AD Address" aria-label="Input" value="ldap://">
                 </div>
                 <div class="uk-margin">
-                    <input class="uk-input" type="text" placeholder="Bind DN" aria-label="Input">
+                    <input name="bind_dn" class="uk-input" type="text" placeholder="Bind DN" aria-label="Input">
                 </div>
                 <div class="uk-margin">
-                    <input class="uk-input" type="password" placeholder="Bind Password" aria-label="Input">
+                    <input name="bind_password" class="uk-input" type="password" placeholder="Bind Password" aria-label="Input">
                 </div>
             </fieldset>
 
             <div class="uk-margin"></div>
-            <button class="uk-button uk-button-primary">Save</button>
+            <button type="submit" class="uk-button uk-button-primary">Save</button>
         </form>
     </div>
 </div>

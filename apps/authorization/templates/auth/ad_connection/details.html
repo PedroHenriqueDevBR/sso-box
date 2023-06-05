@@ -1,17 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Providers{% endblock title %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD Connection details</title>
-</head>
+{% block body %}
 
-<body>
+{% include 'auth/widgets/header.html' with selected='providers' %}
 
-    <h1>AD Connection Details</h1>
+<main class="uk-container uk-padding">
+    <div class="uk-flex uk-flex-between">
+        <div>
+            <h1>{{ ad_connection.details.name }}</h1>
+            <p>{{ ad_connection.details.description }}</p>
+        </div>
+        <div>
+            <button class="uk-button uk-button-default" type="button">EDIT</button>
+        </div>
+    </div>
 
-</body>
+    <hr class="uk-divider-icon">
 
-</html>
+    <div>
+        <p class="uk-text-lead">Connection</p>
+        <p class="uk-text-default"><span class="uk-text-bold"> Address: </span> {{ ad_connection.address }}</p>
+        <p class="uk-text-default"><span class="uk-text-bold"> Bind dn: </span> {{ ad_connection.bind_dn|default:"Not registered" }}</p>
+        <p class="uk-text-default"><span class="uk-text-bold"> Bind password: </span> {{ ad_connection.bind_password|default:"Not registered" }}</p>
+    </div>
+
+
+
+</main>
+
+{% include 'auth/widgets/modal_modify_provider.html' %}
+
+{% endblock body %}

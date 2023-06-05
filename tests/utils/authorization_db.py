@@ -3,8 +3,8 @@ from apps.authorization.models import Provider, ADConnection
 
 def provider_fake() -> Provider:
     return Provider.objects.create(
-        name="",
-        description="",
+        name="Test",
+        description="Test description",
         is_active=True,
     )
 

@@ -24,8 +24,13 @@ urlpatterns = [
         name="ad_create",
     ),
     path(
-        "ad/details/<int:pk>",
+        "ad/<int:pk>/details",
         ad_connection_views.ADConnectionDetails.as_view(),
         name="ad_details",
+    ),
+    path(
+        "ad/<int:pk>/update",
+        ad_connection_views.EditADProvider.as_view(),
+        name="ad_edit",
     ),
 ]
