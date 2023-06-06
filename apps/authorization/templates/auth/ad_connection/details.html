@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Providers{% endblock title %}
+
+{% block body %}
+
+{% include 'auth/widgets/header.html' with selected='providers' %}
+
+<main class="uk-container uk-padding">
+    <div class="uk-flex uk-flex-between">
+        <div>
+            <h1>{{ ad_connection.details.name }}</h1>
+            <p>{{ ad_connection.details.description }}</p>
+        </div>
+        <div>
+            <a class="uk-button uk-button-default" type="button" href="{% url 'ad_edit' ad_connection.pk %}">EDIT</a>
+        </div>
+    </div>
+
+    <hr class="uk-divider-icon">
+
+    <div>
+        <p class="uk-text-lead">Connection</p>
+        <p class="uk-text-default"><span class="uk-text-bold"> Address: </span> {{ ad_connection.address }}</p>
+        <p class="uk-text-default"><span class="uk-text-bold"> Bind dn: </span> {{ ad_connection.bind_dn|default:"Not registered" }}</p>
+        <p class="uk-text-default"><span class="uk-text-bold"> Bind password: </span> {{ ad_connection.bind_password|default:"Not registered" }}</p>
+    </div>
+
+
+
+</main>
+
+{% include 'auth/widgets/modal_modify_provider.html' %}
+
+{% endblock body %}

@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Providers{% endblock title %}
+
+{% block body %}
+
+{% include 'auth/widgets/header.html' with selected='providers' %}
+
+<main class="uk-container uk-padding">
+    <div class="uk-flex uk-flex-between">
+        <h1>Registered Providers</h1>
+        <div class="uk-flex uk-flex-column uk-flex-center">
+            <div class="uk-inline">
+                <button class="uk-button uk-button-default" type="button">ADD</button>
+                <div uk-dropdown="mode: click; animation: slide-top; animate-out: true; duration: 700">
+                    <ul class="uk-nav uk-dropdown-nav">
+                        <li class="uk-nav-header">LDAP Options</li>
+                        <li class="uk-nav-divider"></li>
+                        <li><a href="{% url 'ad_create' %}">Active Directory</a></li>
+                        <li><a href="#">Open LDAP</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
+            <div class="uk-width-expand">
+                {% for provider in providers %}
+                <div class="uk-card-body">
+                    <h3 class="uk-card-title">{{ provider.name }}</h3>
+                    <span>{{ provider.description }}</span><br>
+                    <div class="uk-margin"></div>
+                    <div class="uk-flex">
+                        {% if provider.ad_connections.count > 0 %}
+                        {% for connection in provider.ad_connections.all %}
+                        <a href="{% url 'ad_details' connection.pk %}" class="uk-button uk-button-default">AD - Enabled</a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <h3>Nothing to show!</h3>
+                <p>Click in add to create a new provider</p>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include 'auth/widgets/modal_modify_provider.html' %}
+
+{% endblock body %}

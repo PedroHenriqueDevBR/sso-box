@@ -24,6 +24,10 @@
     background-color: var(--app-secondary-color) !important;
 }
 
+.app-on-secondary-color {
+    color: #fff !important;
+}
+
 .app-secondary-color-text {
     color: var(--app-secondary-color) !important;
 }

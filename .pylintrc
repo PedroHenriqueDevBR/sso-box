@@ -1,4 +1,4 @@
 [MASTER]
 extension-pkg-allow-list=pydantic
-disable=C0114,C0115,C0116
+disable=C0114,C0115,C0116,E1101
 ignore-paths=.sso_box/settings/
