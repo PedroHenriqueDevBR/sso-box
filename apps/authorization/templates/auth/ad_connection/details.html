@@ -13,7 +13,7 @@
             <p>{{ ad_connection.details.description }}</p>
         </div>
         <div>
-            <button class="uk-button uk-button-default" type="button">EDIT</button>
+            <a class="uk-button uk-button-default" type="button" href="{% url 'ad_edit' ad_connection.pk %}">EDIT</a>
         </div>
     </div>
 

@@ -8,7 +8,7 @@
         <h1>AD Provider</h1>
         <p>(*) required</p>
         <hr class="uk-divider-icon">
-        <form method="post">
+        <form method="post" {% if ad_conection is not None %} action="{% url 'ad_edit' pk=ad_connection.pk %}" {% endif %}>
             {% csrf_token %}
             <fieldset class="uk-fieldset">
                 <legend class="uk-legend">Description</legend>
