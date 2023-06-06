@@ -101,7 +101,9 @@ class EditADProvider(View):
         if description is not None and description != provider.description:
             provider.description = description
             updated_provider = True
-        provider.is_active = is_active
+        if provider.is_active != is_active:
+            provider.is_active = is_active
+            updated_provider = True
         if updated_provider:
             provider.save()
 
