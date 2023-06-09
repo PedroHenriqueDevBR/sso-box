@@ -8,6 +8,21 @@ from apps.authorization.utils.formater import format_is_active_attribute
 from apps.authorization.utils.validator import is_valid_ad_form
 
 
+class ADLogin(View):
+    def get(self, request: HttpRequest, pk: int):
+        template_name = "auth/ad_connection/ad_login.html"
+        ad_connections_query = ADConnection.objects.filter()
+        if not ad_connections_query.exists():
+            return HttpResponseNotFound()
+
+        context = {"ad_connection": ad_connections_query.first()}
+        return render(request, template_name, context)
+
+    def all_ad_connections(self):
+        connections = ADConnection.objects.exclude(details=None)
+        return connections.filter(details__is_active=True)
+
+
 class CreateADProvider(View):
     def get(self, request: HttpRequest):
         template_name = "auth/ad_connection/create_ad_connection.html"

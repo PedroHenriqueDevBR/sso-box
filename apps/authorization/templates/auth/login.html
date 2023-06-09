@@ -10,8 +10,7 @@
 {% block body %}
 <div id="login" class="app-primary-color full-height">
     <div class="uk-child-width-1-2 full-height" uk-grid>
-        <aside id="aside-login" class="uk-width-3-5 app-secondary-color-text"
-            style="background: url({% static 'authorization/images/auth_backgroung.jpg' %});">
+        <aside id="aside-login" class="uk-width-3-5 app-secondary-color-text" style="background: url({% static 'authorization/images/auth_backgroung.jpg' %});">
             <h1 class="uk-text-bold uk-text-uppercase">Login</h1>
             <p class="uk-text-meta">Select a login method</p>
         </aside>
@@ -24,9 +23,11 @@
                         <div uk-dropdown="mode: click">
                             <ul class="uk-nav uk-dropdown-nav">
                                 <li class="uk-nav-header">Where i am?</li>
-                                <li><a href="#">Unity 01</a></li>
-                                <li><a href="#">Unity 02</a></li>
-                                <li><a href="#">Unity 03</a></li>
+                                {% for ad in ad_connections %}
+                                <li><a href="{% url 'ad_login' ad.pk %}">{{ ad.details.name }}</a></li>
+                                {% empty %}
+                                <li>Nothing to show!</li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </li>
