@@ -1,9 +1,17 @@
 import ldap
+from typing import Optional
 
 
-class ADConnection:
-    def __init__(self, address: str):
+class ADConnectionService:
+    def __init__(
+        self,
+        address: str,
+        user_dn: Optional[str],
+        user_dn_password: Optional[str],
+    ):
         self.address = address
+        self.user_dn = user_dn
+        self.user_dn_password = user_dn_password
         self.connection = None
 
     def authenticate(self, username: str, password: str) -> bool:

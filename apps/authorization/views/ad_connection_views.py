@@ -1,22 +1,88 @@
+from typing import Optional
+
 from django.http.request import HttpRequest
 from django.http.response import HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
+from django.contrib import messages
 from django.views import View
 
 from apps.authorization.models import ADConnection, Provider
 from apps.authorization.utils.formater import format_is_active_attribute
 from apps.authorization.utils.validator import is_valid_ad_form
+from apps.authorization.services.ad_connection_service import ADConnectionService
 
 
 class ADLogin(View):
     def get(self, request: HttpRequest, pk: int):
         template_name = "auth/ad_connection/ad_login.html"
-        ad_connections_query = ADConnection.objects.filter()
+        ad_connections_query = ADConnection.objects.filter(pk=pk)
         if not ad_connections_query.exists():
             return HttpResponseNotFound()
 
         context = {"ad_connection": ad_connections_query.first()}
         return render(request, template_name, context)
+
+    def post(self, request: HttpRequest, pk: int):
+        ad_connections_query = ADConnection.objects.filter(pk=pk)
+        if not ad_connections_query.exists():
+            return HttpResponseNotFound()
+
+        ad_connection = ad_connections_query.first()
+        if ad_connection is None:
+            return HttpResponseNotFound()
+
+        data = request.POST
+        if not self.is_valid_data(request, data):
+            return redirect("ad_login", pk)
+
+        username = data.get("username") or ""
+        password = data.get("password") or ""
+        if self.authenticate(
+            request=request,
+            ldap_url=ad_connection.address,
+            ldap_user_bind=ad_connection.bind_dn,
+            ldap_password=ad_connection.bind_password,
+            username=username,
+            password=password,
+        ):
+            return redirect("home")
+
+        return redirect("ad_login", pk)
+
+    def authenticate(
+        self,
+        request: HttpRequest,
+        ldap_url: str,
+        ldap_user_bind: Optional[str],
+        ldap_password: Optional[str],
+        username: str,
+        password: str,
+    ):
+        connection = ADConnectionService(
+            address=ldap_url,
+            user_dn=ldap_user_bind,
+            user_dn_password=ldap_password,
+        )
+        try:
+            if connection.authenticate(username=username, password=password):
+                return True
+        except ConnectionRefusedError:
+            messages.add_message(request, messages.ERROR, "Connection refused!")
+        except ConnectionError:
+            messages.add_message(request, messages.ERROR, "Server is down!")
+
+    def is_valid_data(self, request, data) -> bool:
+        username = data.get("username") or ""
+        password = data.get("password") or ""
+
+        if len(username) == 0 or len(password) == 0:
+            messages.add_message(
+                request,
+                messages.WARNING,
+                "Username and password are required!",
+            )
+            return False
+        return True
 
     def all_ad_connections(self):
         connections = ADConnection.objects.exclude(details=None)
