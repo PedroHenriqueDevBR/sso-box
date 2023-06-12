@@ -37,4 +37,9 @@ urlpatterns = [
         users_views.UsersDetailsView.as_view(),
         name="user_details",
     ),
+    path(
+        "logout",
+        dashboard_views.LogoutUser.as_view(),
+        name="logout",
+    ),
 ]
