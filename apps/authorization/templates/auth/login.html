@@ -37,16 +37,17 @@
 
             <!-- Formulário -->
             <div id="container-form">
+                <div class="uk-card-header">
+                    <h3 class="uk-card-title">Default login</h3>
+                </div>
                 <form method="post" class="uk-card uk-card-default">
-                    <div class="uk-card-header">
-                        <h3 class="uk-card-title">Default login</h3>
-                    </div>
+                    {% csrf_token %}
                     <div class="uk-card-body">
                         <div class="uk-margin">
-                            <input class="uk-input" type="text" placeholder="Input" aria-label="Input">
+                            <input class="uk-input" type="text" placeholder="username" aria-label="username" name="username">
                         </div>
                         <div class="uk-margin">
-                            <input class="uk-input" type="password" placeholder="Password" aria-label="Input">
+                            <input class="uk-input" type="password" placeholder="Password" aria-label="Input" name="password">
                         </div>
                     </div>
                     <div class="uk-card-footer uk-padding-remove">
