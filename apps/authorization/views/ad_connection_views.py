@@ -64,7 +64,11 @@ class ADLogin(View):
             user_dn_password=ldap_password,
         )
         try:
-            if connection.authenticate(username=username, password=password):
+            if connection.authenticate(
+                request=request,
+                username=username,
+                password=password,
+            ):
                 return True
         except ConnectionRefusedError:
             messages.add_message(request, messages.ERROR, "Connection refused!")

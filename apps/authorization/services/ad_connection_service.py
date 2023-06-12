@@ -1,5 +1,9 @@
-import ldap
 from typing import Optional
+
+import ldap
+from django.http.request import HttpRequest
+
+from apps.authorization.services.authenticator_service import AuthenticatorService
 
 
 class ADConnectionService:
@@ -14,12 +18,19 @@ class ADConnectionService:
         self.user_dn_password = user_dn_password
         self.connection = None
 
-    def authenticate(self, username: str, password: str) -> bool:
+    def authenticate(
+        self,
+        request: HttpRequest,
+        username: str,
+        password: str,
+    ) -> bool:
         try:
             ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
             self.connection = ldap.initialize(self.address)
             self.connection.protocol_version = ldap.VERSION3
             self.connection.simple_bind_s(username, password)
+            authenticator = AuthenticatorService(request=request)
+            authenticator.authenticate_user(username=username)
             return True
         except ldap.INVALID_CREDENTIALS:
             print(">>> Invalid credencials <<<")
