@@ -22,12 +22,13 @@
     {% endblock body %}
 
     {% if messages %}
-    <div class="m-0">
-        <ul class="messages m-0" style="padding-left: 0;">
-            {% for message in messages %}
-            <div class="alert alert-success" role="alert">{{ message }}</div>
-            {% endfor %}
-        </ul>
+    <div id="messages-container">
+        {% for message in messages %}
+        <div uk-alert class="uk-alert-primary">
+            <a class="uk-alert-close" uk-close></a>
+            <P>{{ message }}</P>
+        </div>
+        {% endfor %}
     </div>
     {% endif %}
 
