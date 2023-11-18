@@ -11,14 +11,14 @@ SSO implementation to personal projects.
 
 ## Funcionalidades
 
- - [ ] Conectar sistema ao LDAP (multiplos LDAP)
- - [ ] Cadastro de usuários no banco de dados do sistema
- - [ ] Controle de perfis dos usuários (Perfis dinâmicos)
- - [ ] Habilitar e desabiltiar usuário no sistema
+ - [X] Conectar sistema ao LDAP (multiplos LDAP)
+ - [X] Cadastro de usuários no banco de dados do sistema
+ - [X] Controle de perfis dos usuários (Perfis dinâmicos)
+ - [X] Habilitar e desabiltiar usuário no sistema
  - [ ] Refletir no sistema se o usuário estiver bloqueado no LDAP
- - [ ] Implementar a autenticação
-    - [ ] Cadastrar dados da aplicação
-        - [ ] cliend_id, redirect_uri, response_type
+ - [X] Implementar a autenticação
+    - [X] Cadastrar dados da aplicação
+        - [X] cliend_id, redirect_uri, response_type
     - [ ] Vincular usuário com a aplicação
     - [ ] Autenticar usuário com aplicação (Gerar token de acesso vinculando usuário, aplicação e sessão)
     - [ ] Endpoint para retornar os dados pessoais do usuário logado
