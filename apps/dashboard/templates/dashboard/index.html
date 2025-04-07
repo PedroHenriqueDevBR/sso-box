@@ -6,83 +6,41 @@
 {% include 'dashboard/widgets/header.html' with selected='home' %}
 
 <main class="uk-container uk-padding">
-    <h1>My Applications</h1>
+    <h1>Minhas aplicações</h1>
     <hr class="uk-divider-icon">
 
     <section>
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
-            <div class="uk-card-media-left uk-cover-container">
-                <img src="https://images.pexels.com/photos/11556100/pexels-photo-11556100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" uk-cover>
-                <canvas width="600" height="400"></canvas>
-            </div>
-            <div class="uk-width-expand">
-                <div class="uk-card-body">
-                    <h3 class="uk-card-title">Application Name</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat impedit qui dolores fuga numquam sequi et beatae, aut, cumque, perferendis accusamus. Architecto sed in
-                        distinctio iste. Minus vero impedit tempore!</p>
-                    <button class="uk-button uk-button-default">Open</button>
+        <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l" uk-grid>
+            {% for application in applications %}
+            <div>
+                <div class="uk-card uk-card-default uk-card-hover">
+                    <div class="uk-card-header">
+                        <h3 class="uk-card-title">{{ application.name }}</h3>
+                    </div>
+                    <div class="uk-card-body">
+                        <h4>Grupo associados</h4>
+                        {% if application.groups.all %}
+                        <div class="uk-flex uk-flex-wrap uk-margin">
+                            {% for group in application.groups.all %}
+                            <span class="uk-badge uk-margin-small-right uk-margin-small-bottom">{{ group.user_type }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <p>No groups associated</p>
+                        {% endif %}
+                    </div>
+                    <div class="uk-card-footer">
+                        <a href="{{ application.url_application }}" target="_blank" class="uk-button uk-button-text">Acessar página</a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
-            <div class="uk-card-media-left uk-cover-container">
-                <img src="https://images.pexels.com/photos/11556100/pexels-photo-11556100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" uk-cover>
-                <canvas width="600" height="400"></canvas>
-            </div>
-            <div class="uk-width-expand">
-                <div class="uk-card-body">
-                    <h3 class="uk-card-title">Application Name</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat impedit qui dolores fuga numquam sequi et beatae, aut, cumque, perferendis accusamus. Architecto sed in
-                        distinctio iste. Minus vero impedit tempore!</p>
-                    <button class="uk-button uk-button-default">Open</button>
+            {% empty %}
+            <div class="uk-width-1-1">
+                <div class="uk-alert-primary" uk-alert>
+                    <p>Nenhuma aplicação disponível.</p>
                 </div>
             </div>
-        </div>
-
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
-            <div class="uk-card-media-left uk-cover-container">
-                <img src="https://images.pexels.com/photos/11556100/pexels-photo-11556100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" uk-cover>
-                <canvas width="600" height="400"></canvas>
-            </div>
-            <div class="uk-width-expand">
-                <div class="uk-card-body">
-                    <h3 class="uk-card-title">Application Name</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat impedit qui dolores fuga numquam sequi et beatae, aut, cumque, perferendis accusamus. Architecto sed in
-                        distinctio iste. Minus vero impedit tempore!.</p>
-                    <button class="uk-button uk-button-default">Open</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
-            <div class="uk-card-media-left uk-cover-container">
-                <img src="https://images.pexels.com/photos/11556100/pexels-photo-11556100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" uk-cover>
-                <canvas width="600" height="400"></canvas>
-            </div>
-            <div class="uk-width-expand">
-                <div class="uk-card-body">
-                    <h3 class="uk-card-title">Application Name</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat impedit qui dolores fuga numquam sequi et beatae, aut, cumque, perferendis accusamus. Architecto sed in
-                        distinctio iste. Minus vero impedit tempore!</p>
-                    <button class="uk-button uk-button-default">Open</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
-            <div class="uk-card-media-left uk-cover-container">
-                <img src="https://images.pexels.com/photos/11556100/pexels-photo-11556100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" uk-cover>
-                <canvas width="600" height="400"></canvas>
-            </div>
-            <div class="uk-width-expand">
-                <div class="uk-card-body">
-                    <h3 class="uk-card-title">Application Name</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat impedit qui dolores fuga numquam sequi et beatae, aut, cumque, perferendis accusamus. Architecto sed in
-                        distinctio iste. Minus vero impedit tempore!</p>
-                    <button class="uk-button uk-button-default">Open</button>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 </main>

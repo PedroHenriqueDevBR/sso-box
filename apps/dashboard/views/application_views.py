@@ -8,7 +8,13 @@ from apps.core.models import Application
 class ApplicationListView(View):
     def get(self, request: HttpRequest):
         template_name = "dashboard/applications.html"
-        return render(request=request, template_name=template_name)
+        applications = Application.objects.all()
+        context = {"applications": applications}
+        return render(
+            request=request,
+            template_name=template_name,
+            context=context,
+        )
 
 
 class ApplicationDetailsView(View):

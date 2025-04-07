@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}No Profile{% endblock title %}
+
+{% block body %}
+
+<main class="app-primary-color uk-flex uk-flex-center uk-flex-middle full-height">
+
+    <div class="uk-width-1-2@m uk-card uk-card-default uk-card-body uk-text-center">
+        <div class="uk-margin">
+            <span uk-icon="icon: user; ratio: 4" class="uk-text-muted"></span>
+        </div>
+        <h3 class="uk-card-title">Sem perfil vinculado</h3>
+        <p>
+            Você não possui perfil vinculado para acesso à página inicial. <br>
+            Por favor, entre em contato com o administrador para configurar o ser perfil.
+        </p>
+        <div class="uk-margin">
+            <a href="{% url 'logout' %}" class="uk-button uk-button-primary">Encerrar sessão</a>
+        </div>
+    </div>
+
+</main>
+
+{% endblock body %}

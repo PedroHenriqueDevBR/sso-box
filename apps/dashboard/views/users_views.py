@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
+from django.contrib.auth.models import User
 from django.http import HttpRequest, HttpResponseNotFound
 
 from apps.core.models import Profile
@@ -8,7 +9,9 @@ from apps.core.models import Profile
 class UsersView(View):
     def get(self, request: HttpRequest):
         template_name = "dashboard/users.html"
-        return render(request=request, template_name=template_name)
+        users = User.objects.all()
+        context = {"users": users}
+        return render(request=request, template_name=template_name, context=context)
 
 
 class UsersDetailsView(View):

@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 
 class UserType(models.Model):
     name = models.CharField(max_length=150)
-    
+
     def __str__(self) -> str:
         return str(self.name)
-    
+
     class Meta:
         verbose_name = "User Type"
         verbose_name_plural = "User Types"
@@ -29,14 +29,25 @@ class Profile(models.Model):
         null=True,
         blank=True,
     )
-    
+
     @property
     def full_name(self) -> str:
-        return f"{self.user.first_name} {self.user.last_name}" if self.user else '--'
-    
+        return f"{self.user.first_name} {self.user.last_name}" if self.user else "--"
+
+    def vinculed_applications(self) -> list:
+        if self.user_type is None:
+            return []
+
+        selecteds = self.user_type.selected_applications.all()  # type: ignore
+        applications = []
+        for selected in selecteds:
+            applications.append(selected.application)
+
+        return applications
+
     def __str__(self) -> str:
         return self.full_name
-    
+
     class Meta:
         verbose_name = "Profile"
         verbose_name_plural = "Profiles"
@@ -72,17 +83,17 @@ class ApplicationPermissions(models.Model):
         null=True,
         blank=True,
     )
-    
+
     def __str__(self) -> str:
-        application_name = ''
-        user_type_name = ''
-        
+        application_name = ""
+        user_type_name = ""
+
         if self.application is not None:
             application_name = self.application.name
         if self.user_type is not None:
             user_type_name = self.user_type.name
-        
-        return f'{application_name} -> {user_type_name}'
+
+        return f"{application_name} -> {user_type_name}"
 
     class Meta:
         verbose_name = "Application Permission"

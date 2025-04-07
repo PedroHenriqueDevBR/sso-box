@@ -8,33 +8,64 @@
 
 <main class="uk-container uk-padding">
     <div class="uk-flex uk-flex-between">
-        <h1>Registered Users</h1>
+        <h1>Usuários registrados</h1>
         <div class="uk-flex uk-flex-column uk-flex-center">
-            <a class="uk-button uk-button-default" href="#modal-modify-user" uk-toggle>Add</a>
+            <a class="uk-button uk-button-default" href="#modal-modify-user" uk-toggle>
+                <span uk-icon="plus"></span> Add
+            </a>
         </div>
     </div>
     <hr class="uk-divider-icon">
 
     <section>
+        {% for user in users %}
+        {% if user.profile %}
         <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
-            <div class="uk-flex uk-flex-center uk-flex-middle">
-                <img src="{% static 'dashboard/images/application-default.jpg' %}" width="300" height="300" class="avatar">
+            <div class="uk-card-media-left uk-cover-container uk-padding">
+                <img src="{% static 'images/user.png' %}" alt="Application Image" width="100%">
             </div>
             <div class="uk-width-expand">
                 <div class="uk-card-body">
-                    <h3 class="uk-card-title">Full User Name</h3>
-                    <span>Created at: 00/00/0000</span><br>
-                    <span>Last login: 00/00/0000</span>
+                    <h3 class="uk-card-title">{{ user.get_full_name }}</h3>
+                    <span><b>Criado em:</b> {{ user.date_joined|date:"d/m/Y" }}</span><br>
+                    <span><b>Último login:</b> {{ user.last_login|date:"d/m/Y" }}</span>
                     <hr>
                     <div class="uk-flex">
-                        <a href="{% url 'user_details' 1 %}" class="uk-button uk-button-default">Details</a>
-                        <a href="{% url 'user_details' 1 %}" class="uk-button uk-button-default">Edit</a>
-                        <a href="{% url 'user_details' 1 %}" class="uk-button uk-button-default">Disable</a>
-                        <a href="{% url 'user_details' 1 %}" class="uk-button uk-button-default">Logs</a>
+                        <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Details</a>
+                        <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Edit</a>
+                        <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Disable</a>
+                        <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Logs</a>
                     </div>
                 </div>
             </div>
         </div>
+        {% else %}
+        <div class="uk-card uk-card-default uk-grid-collapse uk-margin" uk-grid>
+            <div class="uk-width-expand">
+            <div class="uk-card-body">
+                <h3 class="uk-card-title">{{ user.username }}</h3>
+                <div class="uk-alert-warning" uk-alert>
+                <p><span uk-icon="warning"></span> Usuário "{{ user.username }}" não possui perfil para acessar o sistema</p>
+                </div>
+                <span><b>Criado em:</b> {{ user.date_joined|date:"d/m/Y" }}</span><br>
+                <span><b>Último login:</b> {{ user.last_login|date:"d/m/Y" }}</span>
+                <hr>
+                <div class="uk-flex">
+                <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Details</a>
+                <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Edit</a>
+                <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Disable</a>
+                <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Logs</a>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% endif %}
+        {% empty %}
+        <div class="uk-alert uk-alert-warning" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p>Não há usuários cadastrados.</p>
+        </div>
+        {% endfor %}
     </section>
 </main>
 
