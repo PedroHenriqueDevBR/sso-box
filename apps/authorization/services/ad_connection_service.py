@@ -12,11 +12,12 @@ class ADConnectionService:
         address: str,
         user_dn: Optional[str],
         user_dn_password: Optional[str],
+        base_dn: Optional[str],
     ):
         self.address = address
         self.user_dn = user_dn
         self.user_dn_password = user_dn_password
-        self.base_dn = ""
+        self.base_dn = base_dn
         self.connection = None
 
     def authenticate(
@@ -67,13 +68,13 @@ class ADConnectionService:
             authenticator = AuthenticatorService(request=request)
             authenticator.authenticate_user(username=username)
             return True
-        except ldap.INVALID_CREDENTIALS:
+        except ldap.INVALID_CREDENTIALS:  # type: ignore
             print(">>> Invalid credencials <<<")
             raise ConnectionRefusedError()
-        except ldap.SERVER_DOWN:
+        except ldap.SERVER_DOWN:  # type: ignore
             print(">>> Server down <<<")
             raise ConnectionError()
-        except ldap.LDAPError as error:
+        except ldap.LDAPError as error:  # type: ignore
             print("LDAP error: " + str(error))
             raise ConnectionRefusedError()
         except Exception as error:

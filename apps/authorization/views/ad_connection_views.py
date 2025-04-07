@@ -40,6 +40,7 @@ class ADLogin(View):
         if self.authenticate(
             request=request,
             ldap_url=ad_connection.address,
+            ldap_base_dn=ad_connection.ldap_base_dn,
             ldap_user_bind=ad_connection.bind_dn,
             ldap_password=ad_connection.bind_password,
             username=username,
@@ -53,6 +54,7 @@ class ADLogin(View):
         self,
         request: HttpRequest,
         ldap_url: str,
+        ldap_base_dn: str,
         ldap_user_bind: Optional[str],
         ldap_password: Optional[str],
         username: str,
@@ -62,6 +64,7 @@ class ADLogin(View):
             address=ldap_url,
             user_dn=ldap_user_bind,
             user_dn_password=ldap_password,
+            base_dn=ldap_base_dn,
         )
         try:
             if connection.authenticate(

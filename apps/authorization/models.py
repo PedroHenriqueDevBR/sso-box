@@ -6,10 +6,10 @@ class Provider(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField(max_length=500)
     is_active = models.BooleanField(default=True)
-    
+
     def __str__(self) -> str:
         return str(self.name)
-    
+
     class Meta:
         verbose_name = "Provider"
         verbose_name_plural = "Providers"
@@ -41,21 +41,21 @@ class Connection(models.Model):
         null=True,
         blank=True,
     )
-    
+
     def __str__(self) -> str:
-        application_name = ''
-        profile_name = ''
-        provider_name = ''
-        
+        application_name = ""
+        profile_name = ""
+        provider_name = ""
+
         if self.application is not None:
             application_name = self.application.name
         if self.profile is not None:
             application_name = self.profile.full_name
         if self.provider is not None:
             provider_name = self.provider.name
-            
-        return f'{provider_name} - {application_name} - {profile_name}'
-    
+
+        return f"{provider_name} - {application_name} - {profile_name}"
+
     class Meta:
         verbose_name = "Connection"
         verbose_name_plural = "Connections"
@@ -74,18 +74,27 @@ class ADConnection(models.Model):
         max_length=150,
         blank=False,
         null=False,
+        default="ldap://0.0.0.0:389",
+    )
+    ldap_base_dn = models.CharField(
+        max_length=250,
+        blank=False,
+        null=False,
+        default="DC=example,DC=com,DC=br",
     )
     bind_dn = models.CharField(
         max_length=150,
         blank=True,
         null=True,
+        default="CN=admin,OU=subgrupo,OU=grupo,DC=example,DC=com,DC=br",
     )
     bind_password = models.CharField(
         max_length=150,
         blank=True,
         null=True,
+        default="",
     )
-    
+
     def __str__(self) -> str:
         return f"ADConnection to {self.address}"
 
