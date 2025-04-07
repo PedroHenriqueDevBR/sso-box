@@ -38,6 +38,7 @@
                         <a href="{% url 'ad_details' connection.pk %}" class="uk-button uk-button-default">AD - Enabled</a>
                         {% endfor %}
                         {% endif %}
+                        <a href="{% url 'ad_details' connection.pk %}" class="uk-button uk-button-danger">Delete</a>
                     </div>
                 </div>
                 {% empty %}

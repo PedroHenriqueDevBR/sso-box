@@ -4,26 +4,27 @@ import ldap
 class ADConnection:
     def __init__(self, address: str):
         self.address = address
+        self.connection = None
 
-    def authenticate(self, username: str, password: str):
+    def authenticate(self, username: str, password: str) -> bool:
         try:
             ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
-            connection = ldap.initialize(self.address)
-            connection.protocol_version = ldap.VERSION3
-            connection.simple_bind_s(username, password)
-            print("Authenticated")
+            self.connection = ldap.initialize(self.address)
+            self.connection.protocol_version = ldap.VERSION3
+            self.connection.simple_bind_s(username, password)
             return True
         except ldap.INVALID_CREDENTIALS:
-            print("Invalid credentials")
-            return True
+            print(">>> Invalid credencials <<<")
+            raise ConnectionRefusedError()
         except ldap.SERVER_DOWN:
-            print("LDAP error: Server down")
-        except ldap.LDAPError as e:
-            if type(e.message) == dict and e.message.has_key("desc"):
-                print("LDAP error: " + e.message["desc"])
+            print(">>> Server down <<<")
+            raise ConnectionError()
+        except ldap.LDAPError as error:
+            if type(error.message) == dict and error.message.has_key("desc"):
+                print("LDAP error: " + error.message["desc"])
             else:
-                print("LDAP error: " + e)
-            return False
+                print("LDAP error: " + error)
+            raise ConnectionRefusedError()
         finally:
-            print("LDAP closed connection")
-            connection.unbind_s()
+            if self.connection is not None:
+                self.connection.unbind_s()

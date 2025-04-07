@@ -32,6 +32,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "sso_box.urls"
+LOGIN_URL = "/auth/login"
+LOGIN_REDIRECT_URL = "/auth/login"
 
 TEMPLATES = [
     {
