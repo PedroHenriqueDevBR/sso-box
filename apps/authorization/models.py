@@ -6,6 +6,14 @@ class Provider(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField(max_length=500)
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self) -> str:
+        return str(self.name)
+    
+    class Meta:
+        verbose_name = "Provider"
+        verbose_name_plural = "Providers"
+        ordering = ["name"]
 
 
 class Connection(models.Model):
@@ -33,6 +41,25 @@ class Connection(models.Model):
         null=True,
         blank=True,
     )
+    
+    def __str__(self) -> str:
+        application_name = ''
+        profile_name = ''
+        provider_name = ''
+        
+        if self.application is not None:
+            application_name = self.application.name
+        if self.profile is not None:
+            application_name = self.profile.full_name
+        if self.provider is not None:
+            provider_name = self.provider.name
+            
+        return f'{provider_name} - {application_name} - {profile_name}'
+    
+    class Meta:
+        verbose_name = "Connection"
+        verbose_name_plural = "Connections"
+        ordering = ["-created_at"]
 
 
 class ADConnection(models.Model):
@@ -58,3 +85,11 @@ class ADConnection(models.Model):
         blank=True,
         null=True,
     )
+    
+    def __str__(self) -> str:
+        return f"ADConnection to {self.address}"
+
+    class Meta:
+        verbose_name = "AD Connection"
+        verbose_name_plural = "AD Connections"
+        ordering = ["address"]
