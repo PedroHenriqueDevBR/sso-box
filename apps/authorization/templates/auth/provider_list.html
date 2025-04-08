@@ -8,7 +8,7 @@
 
 <main class="uk-container uk-padding">
     <div class="uk-flex uk-flex-between">
-        <h1>Registered Providers</h1>
+        <h1>Providers</h1>
         <div class="uk-flex uk-flex-column uk-flex-center">
             <div class="uk-inline">
                 <button class="uk-button uk-button-default" type="button">ADD</button>
@@ -35,10 +35,10 @@
                     <div class="uk-flex">
                         {% if provider.ad_connections.count > 0 %}
                         {% for connection in provider.ad_connections.all %}
-                        <a href="{% url 'ad_details' connection.pk %}" class="uk-button uk-button-default">AD - Enabled</a>
+                        <a href="#" class="uk-button uk-button-default">AD - Enabled</a>
                         {% endfor %}
                         {% endif %}
-                        <a href="{% url 'ad_details' connection.pk %}" class="uk-button uk-button-danger">Delete</a>
+                        <a href="#" class="uk-button uk-button-danger">Delete</a>
                     </div>
                 </div>
                 {% empty %}

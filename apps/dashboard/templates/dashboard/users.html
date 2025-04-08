@@ -18,54 +18,42 @@
     <hr class="uk-divider-icon">
 
     <section>
-        {% for user in users %}
-        {% if user.profile %}
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-5 uk-margin" uk-grid>
-            <div class="uk-card-media-left uk-cover-container uk-padding">
-                <img src="{% static 'images/user.png' %}" alt="Application Image" width="100%">
-            </div>
-            <div class="uk-width-expand">
-                <div class="uk-card-body">
-                    <h3 class="uk-card-title">{{ user.get_full_name }}</h3>
-                    <span><b>Criado em:</b> {{ user.date_joined|date:"d/m/Y" }}</span><br>
-                    <span><b>Último login:</b> {{ user.last_login|date:"d/m/Y" }}</span>
-                    <hr>
-                    <div class="uk-flex">
-                        <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Details</a>
-                        <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Edit</a>
-                        <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Disable</a>
-                        <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Logs</a>
+        <ul class="uk-list uk-list-striped">
+            
+            {% for user in users %}
+            <li>
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                        <img class="uk-border-circle" width="40" height="40" src="{% static 'images/user.png' %}" alt="User Avatar">
+                    </div>
+                    <div class="uk-width-expand uk-flex uk-flex-between uk-flex-middle">
+                        <div>
+                            <h4 class="uk-margin-remove-bottom">{{ user.get_full_name }} ({{ user.username }})</h4>
+                            <p class="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
+                                {% if not user.profile %}
+                                <span uk-icon="warning" class="uk-text-warning"></span> <span class="uk-text-warning">Usuário sem perfil</span> |
+                                {% endif %} 
+                                <span uk-icon="calendar"></span> Criado em: {{ user.date_joined|date:"d/m/Y" }} |
+                                <span uk-icon="clock"></span> Último acesso: {{ user.last_login|date:"d/m/Y" }}
+                            </p>
+                        </div>
+                        <div class="uk-margin-small-top">
+                            {% if not user.profile %}
+                                <a href="#modal-create-profile" uk-toggle class="uk-button uk-button-small uk-button-default" uk-icon="user"></a>
+                            {% endif %}
+                            <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-small uk-button-default" uk-icon="info"></a>
+                            <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-small uk-button-danger" uk-icon="ban"></a>
+                        </div>
                     </div>
                 </div>
+            </li>
+            {% empty %}
+            <div class="uk-alert uk-alert-warning" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p>Não há usuários cadastrados.</p>
             </div>
-        </div>
-        {% else %}
-        <div class="uk-card uk-card-default uk-grid-collapse uk-margin" uk-grid>
-            <div class="uk-width-expand">
-            <div class="uk-card-body">
-                <h3 class="uk-card-title">{{ user.username }}</h3>
-                <div class="uk-alert-warning" uk-alert>
-                <p><span uk-icon="warning"></span> Usuário "{{ user.username }}" não possui perfil para acessar o sistema</p>
-                </div>
-                <span><b>Criado em:</b> {{ user.date_joined|date:"d/m/Y" }}</span><br>
-                <span><b>Último login:</b> {{ user.last_login|date:"d/m/Y" }}</span>
-                <hr>
-                <div class="uk-flex">
-                <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Details</a>
-                <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Edit</a>
-                <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Disable</a>
-                <a href="{% url 'user_details' user.id %}" class="uk-button uk-button-default">Logs</a>
-                </div>
-            </div>
-            </div>
-        </div>
-        {% endif %}
-        {% empty %}
-        <div class="uk-alert uk-alert-warning" uk-alert>
-            <a class="uk-alert-close" uk-close></a>
-            <p>Não há usuários cadastrados.</p>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        </ul>
     </section>
 </main>
 

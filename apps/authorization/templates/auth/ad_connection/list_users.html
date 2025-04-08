@@ -1,0 +1,85 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}AD Users{% endblock title %}
+
+{% block body %}
+
+{% include 'dashboard/widgets/header.html' with selected='active_directory' %}
+
+<a href="" class="uk-button uk-button-default uk-button-small to-up-button" uk-totop uk-scroll></a>
+
+<main class="uk-container uk-padding">
+    <h1>Usuários Active Directory</h1>
+    <hr class="uk-divider-icon">
+
+    <form method="GET" class="uk-margin-bottom">
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-2">
+                <div class="uk-inline uk-width-1-1">
+                    <span class="uk-form-icon" uk-icon="icon: search"></span>
+                    <input class="uk-input" type="text" name="q" placeholder="Buscar usuário..." value="{{query}}">
+                </div>
+            </div>
+            <div class="uk-width-1-4">
+                <select class="uk-select" name="provider">
+                    <option value="">Todos os servidores</option>
+                    {% for provider in ad_connections %}
+                        <option value="{{ provider.address }}" {% if request.GET.provider == provider.address %}selected{% endif %}>{{ provider.address }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="uk-width-1-4">
+                <select class="uk-select" name="status">
+                    <option value="">Status</option>
+                    <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>Ativo</option>
+                    <option value="inactive" {% if request.GET.status == 'inactive' %}selected{% endif %}>Inativo</option>
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-striped uk-table-small">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Criado em</th>
+                    <th>Último Login</th>
+                    <th>Status</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.mail }}</td>
+                    <td>{{ user.created_at }}</td>
+                    <td>{{ user.last_login }}</td>
+                    <td>
+                        {% if user.is_enabled %}
+                        <span class="uk-label uk-label-success" style="border-radius: 12px;">Ativo</span>
+                        {% else %}
+                        <span class="uk-label uk-label-danger" style="border-radius: 12px;">Inativo</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="#" class="uk-button uk-button-small uk-button-default">
+                            <span uk-icon="file-text"></span>
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="uk-text-center">Nenhum usuário para ser apresentado</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+{% endblock body %}

@@ -1,5 +1,5 @@
 <div class="app-bg-color uk-padding-small">
-    <h3 class="uk-text-lead uk-text-bolder uk-text-uppercase uk-text-center uk-margin-remove">Authenticator System</h3>
+    <h3 class="uk-text-lead uk-text-bolder uk-text-uppercase uk-text-center uk-margin-remove">Autenticador</h3>
 </div>
 <header uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky;">
     <nav class="uk-navbar-container app-primary-color">
@@ -9,13 +9,16 @@
                     <a href="{% url 'home' %}" class="app-on-primary-color {% if selected == 'home' %}app-secondary-color-text{% endif %}">Home</a>
                 </li>
                 <li>
-                    <a href="{% url 'applications' %}" class="app-on-primary-color {% if selected == 'applications' %}app-secondary-color-text{% endif %}">Applications</a>
+                    <a href="{% url 'applications' %}" class="app-on-primary-color {% if selected == 'applications' %}app-secondary-color-text{% endif %}">Aplicações</a>
                 </li>
                 <li>
-                    <a href="{% url 'users' %}" class="app-on-primary-color {% if selected == 'users' %}app-secondary-color-text{% endif %}">Users</a>
+                    <a href="{% url 'users' %}" class="app-on-primary-color {% if selected == 'users' %}app-secondary-color-text{% endif %}">Usuários</a>
                 </li>
                 <li>
-                    <a href="{% url 'profile' %}" class="app-on-primary-color {% if selected == 'profile' %}app-secondary-color-text{% endif %}">Profile</a>
+                    <a href="{% url 'active_directory' %}" class="app-on-primary-color {% if selected == 'active_directory' %}app-secondary-color-text{% endif %}">AD</a>
+                </li>
+                <li>
+                    <a href="{% url 'profile' %}" class="app-on-primary-color {% if selected == 'profile' %}app-secondary-color-text{% endif %}">Meu Perfil</a>
                 </li>
                 <li>
                     <a href="{% url 'default_login' %}" class="app-on-primary-color">Exit</a>

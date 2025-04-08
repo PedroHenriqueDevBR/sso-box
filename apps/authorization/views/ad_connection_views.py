@@ -206,3 +206,42 @@ class ADConnectionDetails(View):
         ad_connection = ad_connection_query.first()
         context = {"ad_connection": ad_connection}
         return render(request, template_name, context)
+
+
+class ADConnectionUsers(View):
+    def get(self, request: HttpRequest):
+        template_name = "auth/ad_connection/list_users.html"
+        query = request.GET.get("q", "")
+        provider = request.GET.get("provider")
+        status = request.GET.get("status")
+
+        result = []
+        if provider:
+            ad_connections = ADConnection.objects.filter(address=provider)
+            if not ad_connections.exists():
+                return redirect("providers")
+        else:
+            ad_connections = ADConnection.objects.all()
+
+        if query:
+            for ad_connection in ad_connections:
+                users = self.search_users_from_ad(ad_connection, query)
+                result.extend(users)
+
+        context = {
+            "ad_connections": ad_connections,
+            "users": result,
+            "query": query,
+            "provider": provider,
+            "status": status,
+        }
+        return render(request, template_name, context)
+
+    def search_users_from_ad(self, ad_connection: ADConnection, search: str):
+        connection = ADConnectionService(
+            address=ad_connection.address,
+            user_dn=ad_connection.bind_dn,
+            user_dn_password=ad_connection.bind_password,
+            base_dn=ad_connection.ldap_base_dn,
+        )
+        return connection.search_users(search=search)
