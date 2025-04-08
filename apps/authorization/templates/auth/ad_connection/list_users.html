@@ -8,6 +8,28 @@
 
 <a href="" class="uk-button uk-button-default uk-button-small to-up-button" uk-totop uk-scroll></a>
 
+<div id="modal-user" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">Detalhes</h2>
+        </div>
+        <div class="uk-modal-body">
+            <ul class="uk-list uk-list-divider">
+                <li><strong>Nome:</strong> {{ user.name }}</li>
+                <li><strong>Username:</strong> {{ user.username }}</li>
+                <li><strong>Email:</strong> {{ user.mail }}</li>
+                <li><strong>Criado em:</strong> {{ user.created_at }}</li>
+                <li><strong>Último Login:</strong> {{ user.last_login }}</li>
+                <li><strong>Status:</strong> {% if user.is_enabled %}Ativo{% else %}Inativo{% endif %}</li>
+            </ul>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Fechar</button>
+        </div>
+    </div>
+</div>
+
 <main class="uk-container uk-padding">
     <h1>Usuários Active Directory</h1>
     <hr class="uk-divider-icon">
@@ -67,7 +89,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="#" class="uk-button uk-button-small uk-button-default">
+                        <a href="#modal-user" class="uk-button uk-button-small uk-button-default" uk-toggle>
                             <span uk-icon="file-text"></span>
                         </a>
                     </td>
@@ -81,5 +103,37 @@
         </table>
     </div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all detail buttons
+        const detailButtons = document.querySelectorAll('[href="#modal-user"]');
+        
+        // Add click event to each button
+        detailButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Get the parent row
+                const row = this.closest('tr');
+                
+                // Get data from the row
+                const name = row.cells[0].textContent.trim();
+                const username = row.cells[1].textContent.trim();
+                const mail = row.cells[2].textContent.trim();
+                const createdAt = row.cells[3].textContent.trim();
+                const lastLogin = row.cells[4].textContent.trim();
+                const isEnabled = row.cells[5].textContent.includes('Sim');
+                
+                // Update modal content
+                const modal = document.getElementById('modal-user');
+                modal.querySelector('li:nth-child(1) strong').nextSibling.textContent = ' ' + name;
+                modal.querySelector('li:nth-child(2) strong').nextSibling.textContent = ' ' + username;
+                modal.querySelector('li:nth-child(3) strong').nextSibling.textContent = ' ' + mail;
+                modal.querySelector('li:nth-child(4) strong').nextSibling.textContent = ' ' + createdAt;
+                modal.querySelector('li:nth-child(5) strong').nextSibling.textContent = ' ' + lastLogin;
+                modal.querySelector('li:nth-child(6) strong').nextSibling.textContent = isEnabled ? ' Ativo' : ' Inativo';
+            });
+        });
+    });
+</script>
 
 {% endblock body %}
