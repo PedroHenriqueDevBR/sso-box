@@ -213,7 +213,15 @@ class ADConnectionUsers(View):
         template_name = "auth/ad_connection/list_users.html"
         query = request.GET.get("q", "")
         provider = request.GET.get("provider")
-        status = request.GET.get("status")
+        status = request.GET.get("status", None)
+
+        if status is not None:
+            if status == "active":
+                status = True
+            elif status == "inactive":
+                status = False
+            else:
+                status = None
 
         result = []
         if provider:
@@ -225,7 +233,11 @@ class ADConnectionUsers(View):
 
         if query:
             for ad_connection in ad_connections:
-                users = self.search_users_from_ad(ad_connection, query)
+                users = self.search_users_from_ad(
+                    ad_connection,
+                    query,
+                    enabled=status,
+                )
                 result.extend(users)
 
         context = {
@@ -237,11 +249,16 @@ class ADConnectionUsers(View):
         }
         return render(request, template_name, context)
 
-    def search_users_from_ad(self, ad_connection: ADConnection, search: str):
+    def search_users_from_ad(
+        self,
+        ad_connection: ADConnection,
+        search: str,
+        enabled: Optional[bool] = None,
+    ) -> list[dict]:
         connection = ADConnectionService(
             address=ad_connection.address,
             user_dn=ad_connection.bind_dn,
             user_dn_password=ad_connection.bind_password,
             base_dn=ad_connection.ldap_base_dn,
         )
-        return connection.search_users(search=search)
+        return connection.search_users(search=search, enabled=enabled)

@@ -95,13 +95,23 @@ class ADConnectionService:
             if self.connection is not None:
                 self.connection.unbind_s()
 
-    def search_users(self, search: str) -> list[dict]:
+    def search_users(
+        self,
+        search: str,
+        enabled: Optional[bool] = None,
+    ) -> list[dict]:
         try:
             self.connection = ldap.initialize(self.address)
             self.connection.protocol_version = self.VERSION
             self.connection.simple_bind_s(self.user_dn, self.user_dn_password)
 
             search_filter = f"(|(sAMAccountName=*{search}*)(displayName=*{search}*))"
+            if enabled is not None:
+                if enabled:
+                    search_filter = f"(&{search_filter}(!(userAccountControl:1.2.840.113556.1.4.803:=2)))"
+                else:
+                    search_filter = f"(&{search_filter}(userAccountControl:1.2.840.113556.1.4.803:=2))"
+
             result = self.connection.search_s(
                 self.base_dn,
                 self.SCOPE,

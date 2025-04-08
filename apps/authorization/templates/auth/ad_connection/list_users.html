@@ -30,7 +30,7 @@
             </div>
             <div class="uk-width-1-4">
                 <select class="uk-select" name="status">
-                    <option value="">Status</option>
+                    <option value="">Todos os status</option>
                     <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>Ativo</option>
                     <option value="inactive" {% if request.GET.status == 'inactive' %}selected{% endif %}>Inativo</option>
                 </select>
@@ -47,7 +47,7 @@
                     <th>Email</th>
                     <th>Criado em</th>
                     <th>Último Login</th>
-                    <th>Status</th>
+                    <th>Ativo</th>
                     <th>Opções</th>
                 </tr>
             </thead>
@@ -61,9 +61,9 @@
                     <td>{{ user.last_login }}</td>
                     <td>
                         {% if user.is_enabled %}
-                        <span class="uk-label uk-label-success" style="border-radius: 12px;">Ativo</span>
+                        <span class="uk-label uk-label-success" style="border-radius: 12px;">Sim</span>
                         {% else %}
-                        <span class="uk-label uk-label-danger" style="border-radius: 12px;">Inativo</span>
+                        <span class="uk-label uk-label-danger" style="border-radius: 12px;">Não</span>
                         {% endif %}
                     </td>
                     <td>
